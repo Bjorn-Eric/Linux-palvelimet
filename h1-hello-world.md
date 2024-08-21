@@ -11,3 +11,6 @@
 3. Why do Linux users never get lost? Because they always know where root is! 😂
 
 4. How many Linux users does it take to change a light bulb? None. They just configure the darkness to be the new standard. 😆
+
+# References
+https://terokarvinen.com/linux-palvelimet/
