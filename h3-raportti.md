@@ -62,7 +62,7 @@ Grep on komento, jonka avulla voi etsiä ja suodattaa tekstiä. Grep komennon av
 ### Esimerkkejä Grep komennosta:
 #### Miten löydän etsimäni sanan tekstitiedostosta?
 
-1. Käytetään esimerkkinä mun luomaa tesktitiedostoa `testi.txt`, jossa on paljon tekstiä ja piilossa on sana `piilossa`.
+1. Käytetään esimerkkinä minun luomaa tesktitiedostoa `testi.txt`, jossa on paljon tekstiä ja piilossa on sana `piilossa`.
     <img src="./screenshots/18.png" alt="screenshot">
     <img src="./screenshots/19.png" alt="screenshot">
 2. Syöttämällä komennon `grep "piilossa" testi.txt` grep komento palauttaa tekstirivin, josta löytyy kyseinen sana.
@@ -104,3 +104,6 @@ Komento listasi minulle suuren määrän tietoa fyysisestä laitteestani. Tuloks
 
 Oma laite on siis "Raspberry Pi 4 Model B Rev 1.4", kuten ensimmäisellä rivillä näkyy. Laitteelle on asennettu `256GB SD Card` kortti tallennustilaksi. Laitteesta löytyy 2x `vc4-hdmi-1 HDMI Jack` hdmi porttia. Laitteesta löytyy myös `7810MiB System memory` RAM-muistia, eli pyöristettynä n. 8GB RAM-muistia. Kuten kuvasta näkyy, niin komento on muuten todella hyvä, jos haluaa saada pikaisen katsauksen fyysisestä laitteesta, mutta tietoa saattaa myös olla hieman hankala tulkita.
 
+
+# Lähteet
+https://terokarvinen.com/2020/command-line-basics-revisited/?fromSearch=command%20line%20basics%20revisited
