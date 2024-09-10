@@ -107,3 +107,4 @@ Oma laite on siis "Raspberry Pi 4 Model B Rev 1.4", kuten ensimmäisellä rivill
 
 # Lähteet
 https://terokarvinen.com/2020/command-line-basics-revisited/?fromSearch=command%20line%20basics%20revisited
+https://dev.to/lissy93/cli-tools-you-cant-live-without-57f6
