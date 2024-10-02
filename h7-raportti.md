@@ -54,8 +54,58 @@ Tämän jälkeen kokeilin vielä ohjeiden mukaan, joko saisin pelkät asiakas ni
 
 ### b) Django tuotanto palvelin
 
+(Kyseinen kappale lisätty myöhemmin)
+
+Tässä tehtävässä yritin asentaa Django tuotanto palvelinta omalle Upcloud palvelimelle ssh yhteyden yli. Ensiksi otin yhteyden ssh:n yli palvelimelle ja päivitin kaikki paketit ajamalla komennon: `sudo apt update && sudo apt full-upgrade -y`. Tämän jälkeen asensin pythonin, pip ja virtualenv paketit ajamalla `sudo apt install python3 pip virtualenv` komennon.
+
+Minulla oli jo entuudestaan olemassa seuraavanlainen virtual host, joka käytti `/home/eric/publicPages/` hakemistoa:
+<img alt="screenshot" src="./screenshots/h7/15.png">
+
+Tein kyseiseen hakemistoon virtuaali ympäristön pythonille ja aktivoin sen komennolla: `virtualenv -p python3 --system-site-packages ~/publicPages/env && source ~/publicPages/env/bin activate`
+
+Loin seuraavaksi `reuirements.txt` tiedoston, johon listasin `django` paketin microlla ja asensin sen `pip install -r requirements.txt` komennolla. Testasin vielä lopuksi, että django asentui oikein ajamalla `django-admin --version` komennon. Django versioksi tuli `5.5.1`.
+<img alt="screenshot" src="./screenshots/h7/16.png">
+
+Seuraavaksi aloitin uuden django projektin komennolla: `django-admin startproject app` ja tarkistin, että projekti tuli luotua: 
+<img alt="screenshot" src="./screenshots/h7/17.png">
+
+Seuraavaksi asensin ohjeiden Tero Karvisen ohjeiden mukaan apahce modin `mod_wsgi`. Asensin kyseisen moduulin komennolla `sudo apt-get -y install libapache2-mod-wsgi-py3`. Tämän jälkeen kopioin vielä Tero Karvisen ohjeista apache virtual host konfiguraation ja vaihdoin oikeat hakemistot:
+<img alt="screenshot" src="./screenshots/h7/18.png">
+
+Tämän jälkeen testasin, että konfiguraatio on oikein tehty komennolla `/sbin/apache2ctl configtest`:
+<img alt="screenshot" src="./screenshots/h7/19.png">
+
+Tämän jälkeen käynnistin palvelimen uudestaan ja yritin varmistaa, että sivu toimii:
+<img alt="screenshot" src="./screenshots/h7/20.png">
+
+Tämän jälkeen disabloin Djangon DEBUG tilan ja käynnistin palvelimen uudestaan komennolla `sudo systemctl restart apache2`:
+<img alt="screenshot" src="./screenshots/h7/21.png">
+
+Seuraavaksi testasin näkyykö tekemäni muutos komennolla `curl -s localhost|grep title` ja muutos näkyy niinkuin pitääkin:
+<img alt="screenshot" src="./screenshots/h7/22.png">
+
+Tämän jälkeen yritin saada staattiset resurssit (css yms.) näkyviin asettamalla oikean polun python asetuksiin:
+<img alt="screenshot" src="./screenshots/h7/23.png">
+<img alt="screenshot" src="./screenshots/h7/24.png">
+<img alt="screenshot" src="./screenshots/h7/25.png">
+
+Lopulta loin uuden admin käyttäjän `./manage.py createsuperuser` komentoa käyttäen, mutta sain vastaavan virheilmoituksen:
+<img alt="screenshot" src="./screenshots/h7/26.png">
+
+Virheilmoituksesta päätellen minulla oli jäänyt migraatiot ajamatta, joten päätin ajaa komennon: `python manage.py migrate` ja tämän jälkeen ajoin uudestaan komennon `./manage.py createsuperuser`. Loin uuden käyttäjän nimeltään `eric`.
+
+Viimeiseksi kokeilin vielä varmuuden vuoksi käynnistää palvelimen uusiksi komennolla: `sudo systemctl restart apache2`. Lopuksi kokeilin vielä kirjautua sisään äskettäin luomillani tiedoilla ja onnistuin krijautumaan sisään: 
+
+<img alt="screenshot" src="./screenshots/h7/27.png">
+
+
+
+
+
 ### Lähteet
 https://terokarvinen.com/2022/django-instant-crm-tutorial/
+
+https://terokarvinen.com/2022/deploy-django/
 
 https://www.w3schools.com/django/django_getstarted.php
 
